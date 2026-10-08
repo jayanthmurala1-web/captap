@@ -22,6 +22,11 @@ Captap is that connection. The client approves the PRD by link. Every acceptance
 numbered requirement. Agents take tasks over [MCP](https://modelcontextprotocol.io) and hand back
 evidence. A person approves the work, with the requirement it was meant to deliver right next to it.
 
+<p align="center">
+  <a href="https://pub-dea841f0968b4194b18176338ad6b2b5.r2.dev/captap/Captap-brand/captap-launch-full.mp4"><img alt="Watch the product tour (2 minutes 21 seconds, with sound)" src=".github/assets/video-poster.png" width="820"></a>
+</p>
+<p align="center"><sub>Product tour, 2:21, with sound. Every screen in it is the real app.</sub></p>
+
 ## Try it in one command
 
 You need [Docker](https://docs.docker.com/get-docker/). Nothing else: no accounts, no keys, no `.env`.
