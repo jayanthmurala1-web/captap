@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      # Integration tests hit Postgres: point CI_DATABASE_URL at a dedicated Neon branch, never production.
+      # Skipped (not failed) until the secret exists.
+      - name: Test
+        if: ${{ env.DATABASE_URL != '' }}
+        run: pnpm db:migrate && pnpm test
+    env:
+      DATABASE_URL: ${{ secrets.CI_DATABASE_URL }}

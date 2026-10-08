@@ -1,0 +1,316 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Theme is a class on <html> (set server-side from a cookie; dark by default). */
+@custom-variant dark (&:is(.dark *));
+
+/* Light theme */
+:root {
+  --background: oklch(0.985 0.002 106);
+  --foreground: oklch(0.2 0.005 106);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.005 106);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.005 106);
+  --primary: oklch(0.52 0.14 152);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.955 0.003 106);
+  --secondary-foreground: oklch(0.25 0.005 106);
+  --muted: oklch(0.955 0.003 106);
+  --muted-foreground: oklch(0.5 0.006 106);
+  --accent: oklch(0.945 0.004 106);
+  --accent-foreground: oklch(0.2 0.005 106);
+  --destructive: oklch(0.577 0.215 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.52 0.14 152);
+  --warning: oklch(0.62 0.15 65);
+  --border: oklch(0.91 0.004 106);
+  --input: oklch(0.88 0.004 106);
+  --ring: oklch(0.52 0.14 152);
+  --radius: 0.75rem;
+  --chart-1: oklch(0.52 0.14 152);
+  --chart-2: oklch(0.6 0.12 200);
+  --chart-3: oklch(0.62 0.15 65);
+  --chart-4: oklch(0.55 0.15 300);
+  --chart-5: oklch(0.577 0.215 27);
+  --sidebar: oklch(0.97 0.003 106);
+  --sidebar-foreground: oklch(0.25 0.005 106);
+  --sidebar-primary: oklch(0.52 0.14 152);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.93 0.004 106);
+  --sidebar-accent-foreground: oklch(0.2 0.005 106);
+  --sidebar-border: oklch(0.91 0.004 106);
+  --sidebar-ring: oklch(0.52 0.14 152);
+
+  /* Legacy aliases for screens not yet rebuilt (spec 014) — delete with the last one. */
+  --sidebar-bg: var(--sidebar);
+  --header-bg: color-mix(in oklch, var(--background) 85%, transparent);
+  --border-subtle: var(--border);
+  --color-canvas: var(--background);
+  --color-surface: var(--card);
+  --color-surface-hover: var(--accent);
+  --color-border-focus: var(--ring);
+  --color-text-primary: var(--foreground);
+  --color-text-secondary: var(--muted-foreground);
+  --color-text-muted: var(--muted-foreground);
+  --color-linear-canvas: var(--background);
+  --color-linear-surface: var(--card);
+  --color-linear-surface-hover: var(--accent);
+  --color-linear-border: var(--border);
+  --color-linear-border-focus: var(--ring);
+  --color-linear-text-primary: var(--foreground);
+  --color-linear-text-secondary: var(--muted-foreground);
+  --color-linear-text-muted: var(--muted-foreground);
+  --color-linear-accent: var(--primary);
+}
+
+/* Dark theme (default): charcoal, not black; one soft green accent. */
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.185 0.002 106);
+  --foreground: oklch(0.96 0.002 106);
+  --card: oklch(0.225 0.002 106);
+  --card-foreground: oklch(0.96 0.002 106);
+  --popover: oklch(0.245 0.002 106);
+  --popover-foreground: oklch(0.96 0.002 106);
+  --primary: oklch(0.8 0.15 152);
+  --primary-foreground: oklch(0.2 0.04 152);
+  --secondary: oklch(0.27 0.002 106);
+  --secondary-foreground: oklch(0.93 0.002 106);
+  --muted: oklch(0.26 0.002 106);
+  --muted-foreground: oklch(0.68 0.004 106);
+  --accent: oklch(0.28 0.002 106);
+  --accent-foreground: oklch(0.96 0.002 106);
+  --destructive: oklch(0.7 0.18 25);
+  --destructive-foreground: oklch(0.2 0.03 25);
+  --success: oklch(0.8 0.15 152);
+  --warning: oklch(0.82 0.14 75);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.8 0.15 152);
+  --chart-1: oklch(0.8 0.15 152);
+  --chart-2: oklch(0.75 0.11 200);
+  --chart-3: oklch(0.82 0.14 75);
+  --chart-4: oklch(0.72 0.14 300);
+  --chart-5: oklch(0.7 0.18 25);
+  --sidebar: oklch(0.165 0.002 106);
+  --sidebar-foreground: oklch(0.85 0.002 106);
+  --sidebar-primary: oklch(0.8 0.15 152);
+  --sidebar-primary-foreground: oklch(0.2 0.04 152);
+  --sidebar-accent: oklch(0.25 0.002 106);
+  --sidebar-accent-foreground: oklch(0.96 0.002 106);
+  --sidebar-border: oklch(1 0 0 / 7%);
+  --sidebar-ring: oklch(0.8 0.15 152);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-3xl: calc(var(--radius) * 2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --font-sans:
+    var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-wordmark: var(--font-fontdiner-swanky), serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Native <select> popups ignore the theme on Windows (white text on white). Use OptionSelect; this is the fallback. */
+  option {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Rendered documents (in-app). */
+@layer components {
+  .prose-doc {
+    @apply flex flex-col gap-3 text-sm leading-relaxed text-foreground/90;
+  }
+  .prose-doc > :first-child {
+    @apply mt-0;
+  }
+  .prose-doc h1 {
+    @apply mt-6 text-xl font-bold tracking-tight text-foreground;
+  }
+  .prose-doc h2 {
+    @apply mt-6 border-b pb-1.5 text-lg font-semibold tracking-tight text-foreground;
+  }
+  .prose-doc h3 {
+    @apply mt-4 text-sm font-semibold text-foreground;
+  }
+  .prose-doc ul {
+    @apply list-disc space-y-1 pl-5;
+  }
+  .prose-doc ol {
+    @apply list-decimal space-y-1 pl-5;
+  }
+  .prose-doc a {
+    @apply text-primary underline underline-offset-4;
+  }
+  .prose-doc code {
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em];
+  }
+  .prose-doc pre {
+    @apply overflow-x-auto rounded-lg border bg-muted p-3.5 font-mono text-xs;
+  }
+  .prose-doc pre code {
+    @apply bg-transparent p-0;
+  }
+  .prose-doc blockquote {
+    @apply border-l-2 border-primary/60 pl-3 text-muted-foreground italic;
+  }
+  .prose-doc {
+    @apply overflow-x-auto;
+  }
+  .prose-doc table {
+    @apply my-2 w-full border-collapse text-sm;
+  }
+  .prose-doc th {
+    @apply border bg-muted px-3 py-1.5 text-left font-semibold;
+  }
+  .prose-doc td {
+    @apply border px-3 py-1.5 text-left;
+  }
+
+  .prose-doc img {
+    @apply my-2 h-auto max-w-full rounded-lg border;
+  }
+  .prose-doc ul[data-type="taskList"] {
+    @apply list-none pl-1;
+  }
+  .prose-doc ul[data-type="taskList"] li {
+    @apply flex items-start gap-2;
+  }
+  .prose-doc ul[data-type="taskList"] li > label {
+    @apply mt-1 shrink-0;
+  }
+  .prose-doc ul[data-type="taskList"] input[type="checkbox"] {
+    @apply size-4 accent-primary;
+  }
+
+  /* Rich editor (Tiptap) */
+  .rich-editor p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply pointer-events-none float-left h-0 text-muted-foreground;
+  }
+  .rich-editor table {
+    @apply table w-full table-fixed;
+  }
+  .rich-editor td,
+  .rich-editor th {
+    @apply relative min-w-24 align-top;
+  }
+  .rich-editor .selectedCell::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-primary/15;
+  }
+  .rich-editor img.ProseMirror-selectednode {
+    @apply outline-2 outline-primary;
+  }
+
+  /* Legacy component classes for screens not yet rebuilt (spec 014) — delete with the last one. */
+  .linear-card,
+  .app-card {
+    @apply border bg-card text-card-foreground transition-colors hover:border-primary/40;
+  }
+  .linear-glass,
+  .app-glass {
+    @apply bg-background/85 backdrop-blur-md;
+  }
+  .linear-input,
+  .app-input,
+  .input {
+    @apply rounded-lg border border-input bg-transparent px-3 py-1.5 text-sm placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30;
+  }
+  .linear-btn-primary,
+  .app-btn-primary,
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/85 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .linear-btn-secondary,
+  .app-btn-secondary,
+  .btn-secondary {
+    @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border bg-card px-3 py-1.5 text-sm font-medium transition hover:bg-accent disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .linear-btn-ghost,
+  .app-btn-ghost {
+    @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground;
+  }
+  .linear-kbd,
+  .app-kbd {
+    @apply rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-semibold text-muted-foreground;
+  }
+}
+
+/* React Flow (ERD canvas) follows the app theme, not the OS setting. */
+.react-flow {
+  --xy-background-pattern-dots-color-default: var(--border);
+  --xy-controls-button-background-color: var(--card);
+  --xy-controls-button-background-color-hover: var(--accent);
+  --xy-controls-button-color: var(--foreground);
+  --xy-controls-button-color-hover: var(--foreground);
+  --xy-controls-button-border-color: var(--border);
+  --xy-edge-label-background-color: var(--card);
+  --xy-edge-label-color: var(--foreground);
+}
+.react-flow__controls {
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}

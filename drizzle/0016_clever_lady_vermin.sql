@@ -1,0 +1,2 @@
+ALTER TABLE "epic" ADD COLUMN "prd_document_id" uuid;--> statement-breakpoint
+ALTER TABLE "epic" ADD CONSTRAINT "epic_prd_document_id_document_id_fk" FOREIGN KEY ("prd_document_id") REFERENCES "public"."document"("id") ON DELETE set null ON UPDATE no action;

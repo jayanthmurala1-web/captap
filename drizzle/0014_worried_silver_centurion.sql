@@ -1,0 +1,1 @@
+ALTER TABLE "task" ADD COLUMN "story_points" integer DEFAULT 1;

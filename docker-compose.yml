@@ -1,0 +1,51 @@
+# Try Captap with one command:  docker compose up
+# Then open http://localhost:3000, sign up, create a workspace.
+#
+# TRIAL ONLY. The auth secret below is public, so don't expose this stack to a network. For a real
+# deployment, copy .env.example, set your own secrets and follow the README.
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: captap
+    volumes:
+      - captap-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d captap"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  # Lets the app's Neon serverless driver talk to plain Postgres over WebSocket.
+  wsproxy:
+    image: ghcr.io/neondatabase/wsproxy:latest
+    environment:
+      ALLOW_ADDR_REGEX: ".*"
+      LOG_TRAFFIC: "false"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/captap
+      NEON_WS_PROXY: wsproxy:80
+      BETTER_AUTH_SECRET: trial-only-secret-do-not-use-in-production-0000
+      BETTER_AUTH_URL: http://localhost:3000
+      # Trial-only too: encrypts secrets saved on the Connections page. Public value, localhost only.
+      SECRETS_ENCRYPTION_KEY: dHJpYWwtb25seS1rZXktZG8tbm90LXVzZS0zMmJ5dGU=
+      # Optional: set these in your shell to switch features on.
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-Captap <onboarding@resend.dev>}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+    depends_on:
+      - wsproxy
+
+volumes:
+  captap-data:
