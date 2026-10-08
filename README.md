@@ -167,9 +167,13 @@ privately, see [SECURITY.md](SECURITY.md).
 
 Captap is built by **Jayanth Murala**, a full-stack developer and AI engineer.
 
-[Website](https://www.jayanthmurala.com) · [GitHub](https://github.com/Jayanthmurala) ·
-[LinkedIn](https://www.linkedin.com/in/jayanth-murala-0045b2281) · [X](https://x.com/MuralaJaya55888) ·
-[hello@jayanthmurala.com](mailto:hello@jayanthmurala.com)
+- Website: [jayanthmurala.com](https://www.jayanthmurala.com)
+- GitHub: [jayanthmurala1-web](https://github.com/jayanthmurala1-web) (open source) ·
+  [Jayanthmurala](https://github.com/Jayanthmurala)
+- LinkedIn: [Jayanth Murala](https://www.linkedin.com/in/jayanth-murala-0045b2281)
+- X: [@jayanthmurala_](https://x.com/jayanthmurala_) · Threads: [@jayanthmurala](https://www.threads.com/@jayanthmurala) ·
+  Instagram: [@jayanthmurala](https://www.instagram.com/jayanthmurala) · Reddit: [u/ExpertEye9853](https://www.reddit.com/user/ExpertEye9853/)
+- Email: [hello@jayanthmurala.com](mailto:hello@jayanthmurala.com)
 
 If you run Captap for your agency, or tried it and it didn't fit, I'd like to hear about it.
 
